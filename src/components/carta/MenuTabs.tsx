@@ -1,70 +1,88 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 import { menuCategories } from '@/data/menu'
 
-const NAVBAR_H = 64
-const TABS_H = 48
-const SCROLL_OFFSET = NAVBAR_H + TABS_H + 16
+const SHORT_LABELS: Record<string, string> = {
+  desayunos: 'Desayunos',
+  brunch: 'Brunch',
+  cafeteria: 'Cafetería',
+  'cafe-frio': 'Café Frío',
+  pasteleria: 'Pastelería',
+  panaderia: 'Panadería',
+  lunch: 'Lunch',
+  sandwiches: 'Sandwiches',
+  bebidas: 'Bebidas',
+  'sin-gluten': 'Sin Gluten',
+}
 
 export default function MenuTabs() {
-  const [activeId, setActiveId] = useState(menuCategories[0].id)
+  const tabsRef = useRef<HTMLDivElement>(null)
+  const [activeSection, setActiveSection] = useState(menuCategories[0].id)
 
   useEffect(() => {
-    const observers: IntersectionObserver[] = []
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { threshold: 0.3, rootMargin: '-80px 0px -60% 0px' }
+    )
 
     menuCategories.forEach(({ id }) => {
       const el = document.getElementById(id)
-      if (!el) return
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveId(id)
-        },
-        {
-          rootMargin: `-${SCROLL_OFFSET}px 0px -55% 0px`,
-          threshold: 0,
-        }
-      )
-      observer.observe(el)
-      observers.push(observer)
+      if (el) observer.observe(el)
     })
 
-    return () => observers.forEach((o) => o.disconnect())
+    return () => observer.disconnect()
   }, [])
+
+  useEffect(() => {
+    const activeTab = document.getElementById(`tab-${activeSection}`)
+    activeTab?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
+  }, [activeSection])
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id)
     if (!el) return
-    const top = el.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET
+    const top = el.getBoundingClientRect().top + window.scrollY - 120
     window.scrollTo({ top, behavior: 'smooth' })
   }
 
   return (
-    <div className="sticky top-16 z-30 bg-background/95 backdrop-blur-sm border-b border-soft-highlight shadow-sm">
+    <div
+      className="sticky top-16 z-50"
+      style={{ backgroundColor: '#F5F0E8', boxShadow: '0 1px 4px 0 rgba(59,47,47,0.08)' }}
+    >
       <div
-        className="flex overflow-x-auto scrollbar-hide max-w-6xl mx-auto px-2"
-        style={{ scrollbarWidth: 'none' }}
+        ref={tabsRef}
+        className="flex overflow-x-auto max-w-6xl mx-auto px-2"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' } as React.CSSProperties}
       >
-        {menuCategories.map(({ id, title }) => (
+        {menuCategories.map(({ id }) => (
           <button
             key={id}
+            id={`tab-${id}`}
             onClick={() => scrollToSection(id)}
-            className={`relative flex-shrink-0 px-4 py-3 font-montserrat text-[11px] font-semibold tracking-[0.15em] uppercase whitespace-nowrap transition-colors ${
-              activeId === id
-                ? 'text-primary'
-                : 'text-text-dark/50 hover:text-text-dark'
-            }`}
+            className="flex-shrink-0 px-4 py-2 my-2 mx-0.5 font-montserrat text-[11px] font-semibold tracking-[0.15em] uppercase whitespace-nowrap rounded-full transition-colors"
+            style={
+              activeSection === id
+                ? { backgroundColor: '#A3A87C', color: '#F5F0E8' }
+                : { color: '#3B2F2F' }
+            }
+            onMouseEnter={(e) => {
+              if (activeSection !== id)
+                (e.currentTarget as HTMLButtonElement).style.backgroundColor = '#D5CBBD'
+            }}
+            onMouseLeave={(e) => {
+              if (activeSection !== id)
+                (e.currentTarget as HTMLButtonElement).style.backgroundColor = ''
+            }}
           >
-            {title}
-            {activeId === id && (
-              <motion.div
-                layoutId="tab-underline"
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-              />
-            )}
+            {SHORT_LABELS[id] ?? id}
           </button>
         ))}
       </div>

@@ -7,7 +7,7 @@ interface MenuSectionProps {
 
 export default function MenuSection({ category }: MenuSectionProps) {
   return (
-    <section id={category.id} className="scroll-mt-32 py-10">
+    <section id={category.id} className="py-10" style={{ scrollMarginTop: '80px' }}>
       <div className="mb-6">
         <h2 className="font-nunito font-extrabold text-2xl md:text-3xl text-text-dark">
           {category.title}
