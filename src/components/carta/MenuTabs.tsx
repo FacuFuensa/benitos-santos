@@ -18,10 +18,13 @@ const SHORT_LABELS: Record<string, string> = {
 
 export default function MenuTabs() {
   const tabsRef = useRef<HTMLDivElement>(null)
+  const isClickScrolling = useRef(false)
   const [activeSection, setActiveSection] = useState(menuCategories[0].id)
 
   useEffect(() => {
     const handleScroll = () => {
+      if (isClickScrolling.current) return
+
       const offset = 120
       let current = menuCategories[0].id
 
@@ -45,11 +48,16 @@ export default function MenuTabs() {
     activeTab?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
   }, [activeSection])
 
-  const scrollToSection = (id: string) => {
-    const el = document.getElementById(id)
-    if (!el) return
-    const top = el.getBoundingClientRect().top + window.scrollY - 120
-    window.scrollTo({ top, behavior: 'smooth' })
+  const handleTabClick = (categoryId: string) => {
+    isClickScrolling.current = true
+    setActiveSection(categoryId)
+
+    const el = document.getElementById(categoryId)
+    if (el) el.scrollIntoView({ behavior: 'smooth' })
+
+    setTimeout(() => {
+      isClickScrolling.current = false
+    }, 800)
   }
 
   return (
@@ -66,7 +74,7 @@ export default function MenuTabs() {
           <button
             key={id}
             id={`tab-${id}`}
-            onClick={() => scrollToSection(id)}
+            onClick={() => handleTabClick(id)}
             className="flex-shrink-0 px-4 py-2 my-2 mx-0.5 font-montserrat text-[11px] font-semibold tracking-[0.15em] uppercase whitespace-nowrap rounded-full transition-colors"
             style={
               activeSection === id
