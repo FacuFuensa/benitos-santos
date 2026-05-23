@@ -21,23 +21,23 @@ export default function MenuTabs() {
   const [activeSection, setActiveSection] = useState(menuCategories[0].id)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id)
-          }
-        })
-      },
-      { threshold: 0.3, rootMargin: '-80px 0px -60% 0px' }
-    )
+    const handleScroll = () => {
+      const offset = 120
+      let current = menuCategories[0].id
 
-    menuCategories.forEach(({ id }) => {
-      const el = document.getElementById(id)
-      if (el) observer.observe(el)
-    })
+      for (const category of menuCategories) {
+        const el = document.getElementById(category.id)
+        if (el && el.getBoundingClientRect().top <= offset) {
+          current = category.id
+        }
+      }
 
-    return () => observer.disconnect()
+      setActiveSection(current)
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   useEffect(() => {
