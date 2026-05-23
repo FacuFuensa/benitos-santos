@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #E8DFD0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: #3B2F2F;
+}
+
+/* Coffee ring background pattern */
+.coffee-rings-bg {
+  background-image:
+    radial-gradient(circle, transparent 55px, rgba(213, 203, 189, 0.35) 55px, rgba(213, 203, 189, 0.35) 60px, transparent 60px),
+    radial-gradient(circle, transparent 90px, rgba(213, 203, 189, 0.2) 90px, rgba(213, 203, 189, 0.2) 96px, transparent 96px),
+    radial-gradient(circle, transparent 40px, rgba(213, 203, 189, 0.25) 40px, rgba(213, 203, 189, 0.25) 44px, transparent 44px);
+  background-size: 280px 280px, 440px 440px, 320px 320px;
+  background-position: 0 0, 140px 80px, 60px 200px;
+}
+
+/* Hide scrollbar while keeping scroll functionality */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
