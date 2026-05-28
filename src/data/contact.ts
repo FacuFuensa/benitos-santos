@@ -125,7 +125,6 @@ export const social = {
   instagramTiendaHandle: '@benitolatienda',
   whatsappDefault: '5493816281499',
   whatsappDefaultLink: 'https://wa.me/5493816281499?text=Hola!%20%F0%9F%98%8A',
-  linktree: 'https://linktr.ee/benitosantoscafe',
 }
 
 export const globalHours = {

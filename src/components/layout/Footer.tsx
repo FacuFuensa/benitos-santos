@@ -56,14 +56,6 @@ export default function Footer() {
             >
               WhatsApp +54 9 3816 28-1499
             </Link>
-            <Link
-              href={social.linktree}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-inter text-sm text-text-light/80 hover:text-accent transition-colors"
-            >
-              Linktree
-            </Link>
           </div>
         </div>
       </div>
