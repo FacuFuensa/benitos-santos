@@ -31,7 +31,7 @@ export const locations: Location[] = [
     mapIframe: 'https://maps.google.com/maps?q=-26.8207931,-65.1988893&z=14&output=embed',
     mapLink: 'https://www.google.com/maps/place/?q=place_id:ChIJ4-NDWnxdIpQRRRDIHQHhJIQ',
     whatsapp: '5493816281499',
-    whatsappMessage: 'Hola! 😊',
+    whatsappMessage: 'Hola!',
   },
   {
     id: 'barrio-sur',
@@ -44,7 +44,7 @@ export const locations: Location[] = [
     mapIframe: 'https://maps.google.com/maps?q=-26.8364531,-65.2050872&z=14&output=embed',
     mapLink: 'https://www.google.com/maps/place/?q=place_id:ChIJsSe6HwBdIpQR20aPBpD3ZrY',
     whatsapp: '5493816281499',
-    whatsappMessage: 'Hola! 😊',
+    whatsappMessage: 'Hola!',
   },
   {
     id: 'microcentro',
@@ -57,7 +57,7 @@ export const locations: Location[] = [
     mapIframe: 'https://maps.google.com/maps?q=-26.8297094,-65.2013881&z=14&output=embed',
     mapLink: 'https://www.google.com/maps/place/?q=place_id:ChIJBfFcaT1dIpQRWVd4xAXKPfU',
     whatsapp: '5493816281499',
-    whatsappMessage: 'Hola! 😊',
+    whatsappMessage: 'Hola!',
   },
   {
     id: 'yerba-buena',
@@ -70,7 +70,7 @@ export const locations: Location[] = [
     mapIframe: 'https://maps.google.com/maps?q=-26.815399,-65.2908552&z=14&output=embed',
     mapLink: 'https://www.google.com/maps/place/?q=place_id:ChIJEYzem0FDIpQRKBm922nMQBo',
     whatsapp: '5493816281499',
-    whatsappMessage: 'Hola! 😊',
+    whatsappMessage: 'Hola!',
   },
   {
     id: 'praderas',
@@ -83,7 +83,7 @@ export const locations: Location[] = [
     mapIframe: 'https://maps.google.com/maps?q=-26.798724,-65.2846234&z=14&output=embed',
     mapLink: 'https://www.google.com/maps/place/?q=place_id:ChIJURvKTABdIpQRSprQrLGZNpw',
     whatsapp: '5493816281509',
-    whatsappMessage: 'Hola! 😊',
+    whatsappMessage: 'Hola!',
     badges: ['pet-friendly'],
     note: 'Pet Café — ¡Las mascotas son bienvenidas!',
   },
@@ -98,7 +98,7 @@ export const locations: Location[] = [
     mapIframe: 'https://maps.google.com/maps?q=-26.8222629,-65.2670409&z=14&output=embed',
     mapLink: 'https://www.google.com/maps/place/?q=place_id:ChIJfy8bLQBdIpQRVY89w48EveM',
     whatsapp: '5493816281499',
-    whatsappMessage: 'Hola! 😊',
+    whatsappMessage: 'Hola!',
   },
   {
     id: 'la-tienda',
@@ -111,7 +111,7 @@ export const locations: Location[] = [
     mapIframe: 'https://maps.google.com/maps?q=-26.8204072,-65.2012402&z=14&output=embed',
     mapLink: 'https://www.google.com/maps/place/?q=place_id:ChIJ-0YIKQBdIpQRiLxmCl0YgJA',
     whatsapp: '5493816281499',
-    whatsappMessage: 'Hola! 😊',
+    whatsappMessage: 'Hola!',
     isStore: true,
     instagram: 'https://instagram.com/benitolatienda',
     note: 'Tienda especializada en café de origen, productos artesanales y accesorios.',
